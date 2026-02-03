@@ -1,29 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz_App</title>
-    <link rel="stylesheet" href="./styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QuizMaster</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <script src="./app.js"></script>
-    <div class="interface">
-        <h1>Welcome To Quiz Competition</h1>
-        <form action="" class="frm">
-            <label for="" class="para1"> choose a programming language
-                <select name="programes" id="slt" >
-                     <option value=""  selected >-choose-</option>
-                    <option class= "opn" value="javascript">javascript</option>
-                    <option  class= "opn" value="java">java</option>
-                    <option  class= "opn" value="python">python</option>
-                    <option   class= "opn" value="c">c</option>
 
-                </select>
-            </label>
-        </form>
+<!-- background blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
 
-        <button class="btn" id="btns" >start Quiz</button>
+<div class="container">
+
+  <!-- ===== WELCOME SCREEN ===== -->
+  <div class="screen active" id="welcome-screen">
+    <div class="welcome-card">
+      <div class="logo">Quiz<span>Master</span></div>
+      <p class="tagline">Test your knowledge — 10 questions, pick a topic</p>
+      <div class="topic-label">Choose a Topic</div>
+      <div class="topic-grid" id="topic-grid"></div>
+      <button class="start-btn" id="start-btn" disabled>Start Quiz</button>
     </div>
+  </div>
+
+  <!-- ===== QUIZ SCREEN ===== -->
+  <div class="screen" id="quiz-screen">
+    <div class="quiz-header">
+      <span class="topic-tag" id="current-topic"></span>
+      <span class="q-count" id="q-count"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="question-card">
+      <div class="question-text" id="question-text"></div>
+      <div class="options" id="options"></div>
+      <button class="next-btn" id="next-btn">Next →</button>
+    </div>
+  </div>
+
+  <!-- ===== RESULT SCREEN ===== -->
+  <div class="screen" id="result-screen">
+    <div class="result-card">
+      <div class="result-emoji" id="result-emoji"></div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-sub" id="result-sub"></div>
+      <div class="score-ring-wrap">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle class="score-ring-bg" cx="75" cy="75" r="60"/>
+          <circle class="score-ring-fg" id="score-ring" cx="75" cy="75" r="60"
+                  stroke-dasharray="377" stroke-dashoffset="377"/>
+        </svg>
+        <div class="score-ring-text">
+          <span class="num" id="score-num">0</span>
+          <span class="denom">/ 10</span>
+        </div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-pill"><div class="sp-num green" id="correct-count">0</div><div class="sp-label">Correct</div></div>
+        <div class="summary-pill"><div class="sp-num red" id="wrong-count">0</div><div class="sp-label">Wrong</div></div>
+        <div class="summary-pill"><div class="sp-num" id="accuracy-pct" style="color:var(--accent)">0%</div><div class="sp-label">Accuracy</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-retry" id="retry-btn">Retry Same Topic</button>
+        <button class="btn-home" id="home-btn">Home</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="./quiz.js"></script>
 </body>
 </html>
